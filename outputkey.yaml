@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  REDIS_OUTPUT_KEY: 2020054498-proj3-output
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2025-01-03T00:53:41Z"
+  name: outputkey
+  namespace: gustavocunha
+  resourceVersion: "10859644"
+  uid: 6de84ed5-6720-43ab-b691-67236dc572e7
