@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tp3dashboard-gustavocunha
+  namespace: gustavocunha
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 52027
+      targetPort: 5000
+      nodePort: 45689
+  selector:
+    app: dashboard
