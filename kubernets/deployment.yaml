@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: dashboard
-          image: gustavofcunha/dashboard:v1
+          image: gustavofcunha/dashboard:v2
           ports:
-            - containerPort: 5000
+            - containerPort: 8501

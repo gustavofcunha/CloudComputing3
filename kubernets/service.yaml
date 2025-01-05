@@ -7,8 +7,8 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 52027
-      targetPort: 5000
+      port: 8501
+      targetPort: 8501
       nodePort: 45689
   selector:
     app: dashboard
