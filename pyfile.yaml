@@ -31,8 +31,8 @@ data:
         return result
 kind: ConfigMap
 metadata:
-  creationTimestamp: "2025-01-03T00:50:01Z"
+  creationTimestamp: "2025-01-05T16:29:11Z"
   name: pyfile
   namespace: gustavocunha
-  resourceVersion: "10858481"
-  uid: bce4123c-f411-49a8-b8aa-9bda1e646e3b
+  resourceVersion: "12171129"
+  uid: e5f5ea41-9646-4fc1-8b82-0d9add650e81
