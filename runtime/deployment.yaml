@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serverless-runtime
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serverless-runtime
+  template:
+    metadata:
+      labels:
+        app: serverless-runtime
+    spec:
+      containers:
+      - name: serverless-runtime
+        image: gustavofcunha/serverless-runtime:v1
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 300Mi
+        env:
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: REDIS_PORT
+        - name: REDIS_INPUT_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: REDIS_INPUT_KEY
+        - name: REDIS_OUTPUT_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: REDIS_OUTPUT_KEY
+        - name: MONITORING_PERIOD
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: MONITORING_PERIOD
+        - name: PYFILE_OR_ZIP
+          value: "zip"
+        - name: ZIP_FILE_PATH
+          value: "/opt/user_function.zip"
+        - name: ZIP_ENTRY_FILE
+          value: "main.py"
+        - name: ENTRY_FUNCTION
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: ENTRY_FUNCTION
+        - name: ZIP_BASE64
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: ZIP_BASE64
+        volumeMounts:
+        - name: pyfile
+          mountPath: /opt/usermodule.py
+          subPath: pyfile
+      imagePullSecrets:
+      - name: regcred
+      volumes:
+      - name: pyfile
+        configMap:
+          name: pyfile
